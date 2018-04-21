@@ -47,6 +47,7 @@ PRODUCT_COPY_FILES += \
 # Override heap growth limit due to high display density on device
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heapgrowthlimit=256m \
+    dalvik.vm.heapminfree=2m \
     ro.telephony.default_cdma_sub=0
 
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
@@ -77,7 +78,31 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.hwui.text_small_cache_width=1024 \
     ro.hwui.text_small_cache_height=1024 \
     ro.hwui.text_large_cache_width=2048 \
-    ro.hwui.text_large_cache_height=1024
+    ro.hwui.text_large_cache_height=2048
+
+# Audio tweaks
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.config.vc_call_vol_steps=25 \
+    ro.config.media_vol_steps=45
+
+# Camera tweaks
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.camera.hal.debug=0
+
+# Performance tweaks  
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.config.nocheckin=1 \
+    profiler.force_disable_err_rpt=1 \
+    profiler.force_disable_ulog=1 \
+    persist.service.lgospd.enable=0 \
+    persist.service.pcsync.enable=0 \
+    dalvik.vm.checkjni=false \
+    dalvik.vm.verify-bytecode=false \
+    profiler.debugmonitor=false \
+    profiler.launch=false \
+    profiler.hung.dumpdobugreport=false \
+    dalvik.vm.jitinitialsize=512K \
+    dalvik.vm.jitmaxsize=128M
 
 # For android_filesystem_config.h
 PRODUCT_PACKAGES += fs_config_files \
