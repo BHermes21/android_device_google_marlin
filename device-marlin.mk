@@ -33,7 +33,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Audio
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.config.vc_call_vol_steps=7 \
     fmas.hdph_sgain=0
 
 # HWUI cache sizes
