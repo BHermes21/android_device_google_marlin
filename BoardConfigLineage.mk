@@ -12,6 +12,7 @@ KERNEL_TOOLCHAIN_PREFIX := aarch64-linux-gnu-
 SDCLANG := true
 TARGET_USE_SDCLANG := true
 SDCLANG_PATH := prebuilts/clang/host/linux-x86/sdclang-4.0/bin
+SDCLANG_COMMON_FLAGS := -O3 -mllvm -polly-run-dce -fvectorize -g0 -DNDEBUG
 
 # Telephony
 TARGET_PROVIDES_TELEPHONY_EXT := true
