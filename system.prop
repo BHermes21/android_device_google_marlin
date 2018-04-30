@@ -231,3 +231,11 @@ ro.sys.fw.bg_apps_limit=60
 
 #Camera fullscreen doesn't show navigation bar
 Camera.no_navigation_bar=true
+
+ro.config.htc.nocheckin=1
+debugtool.anrhistory=0
+ro.kernel.android.checkjni=0
+ro.kernel.checkjni=0
+persist.sampling_profiler=0
+persist.vendor.qti.inputopts.enable=true
+debug.sf.recomputecrop=0
