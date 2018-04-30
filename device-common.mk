@@ -92,6 +92,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Performance tweaks  
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.config.nocheckin=1 \
+    ro.config.htc.nocheckin=1 \
     profiler.force_disable_err_rpt=1 \
     profiler.force_disable_ulog=1 \
     persist.service.lgospd.enable=0 \
@@ -101,6 +102,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
     profiler.debugmonitor=false \
     profiler.launch=false \
     profiler.hung.dumpdobugreport=false \
+    debugtool.anrhistory=0 \
+    ro.kernel.android.checkjni=0 \
+    ro.kernel.checkjni=0 \
+    persist.sampling_profiler=0 \
+    persist.vendor.qti.inputopts.enable=true \
+    debug.sf.recomputecrop=0 \
     dalvik.vm.jitinitialsize=512K \
     dalvik.vm.jitmaxsize=128M
 
