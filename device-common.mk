@@ -47,7 +47,6 @@ PRODUCT_COPY_FILES += \
 # Override heap growth limit due to high display density on device
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heapgrowthlimit=256m \
-    dalvik.vm.heapminfree=2m \
     ro.telephony.default_cdma_sub=0
 
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
@@ -78,38 +77,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.hwui.text_small_cache_width=1024 \
     ro.hwui.text_small_cache_height=1024 \
     ro.hwui.text_large_cache_width=2048 \
-    ro.hwui.text_large_cache_height=2048
-
-# Audio tweaks
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.config.vc_call_vol_steps=25 \
-    ro.config.media_vol_steps=45
-
-# Camera tweaks
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.camera.hal.debug=0
-
-# Performance tweaks  
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.config.nocheckin=1 \
-    ro.config.htc.nocheckin=1 \
-    profiler.force_disable_err_rpt=1 \
-    profiler.force_disable_ulog=1 \
-    persist.service.lgospd.enable=0 \
-    persist.service.pcsync.enable=0 \
-    dalvik.vm.checkjni=false \
-    dalvik.vm.verify-bytecode=false \
-    profiler.debugmonitor=false \
-    profiler.launch=false \
-    profiler.hung.dumpdobugreport=false \
-    debugtool.anrhistory=0 \
-    ro.kernel.android.checkjni=0 \
-    ro.kernel.checkjni=0 \
-    persist.sampling_profiler=0 \
-    persist.vendor.qti.inputopts.enable=true \
-    debug.sf.recomputecrop=0 \
-    dalvik.vm.jitinitialsize=512K \
-    dalvik.vm.jitmaxsize=128M
+    ro.hwui.text_large_cache_height=1024
 
 # For android_filesystem_config.h
 PRODUCT_PACKAGES += fs_config_files \
@@ -299,12 +267,10 @@ PRODUCT_PACKAGES += \
     nanoapp_cmd
 
 # sensor utilities (only for userdebug and eng builds)
-ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
-ifeq (,$(filter lineage_marlin lineage_sailfish, $(TARGET_PRODUCT)))
+ifneq (,$(filter eng, $(TARGET_BUILD_VARIANT)))
 PRODUCT_PACKAGES += \
     nanotool \
     sensortest
-endif
 endif
 
 PRODUCT_COPY_FILES += \
@@ -342,7 +308,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Write Manufacturer & Model information in created media files.
 # IMPORTANT: ONLY SET THIS PROPERTY TO TRUE FOR PUBLIC DEVICES
-ifneq ($(filter lineage_sailfish% aosp_sailfish% sailfish% lineage_marlin% aosp_marlin% marlin%, $(TARGET_PRODUCT)),)
+ifneq ($(filter lineage_sailfish% aosp_sailfish% sailfish% rr_marlin% aosp_marlin% marlin%, $(TARGET_PRODUCT)),)
 PRODUCT_PROPERTY_OVERRIDES += \
     media.recorder.show_manufacturer_and_model=true
 else
@@ -531,13 +497,11 @@ PRODUCT_PACKAGES += \
     android.hardware.boot@1.0-service
 
 # Library used for VTS tests  (only for userdebug and eng builds)
-ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
-ifeq (,$(filter lineage_marlin lineage_sailfish, $(TARGET_PRODUCT)))
+ifneq (,$(filter eng, $(TARGET_BUILD_VARIANT)))
 # For VTS profiling.
 PRODUCT_PACKAGES += \
      libvts_profiling \
      libvts_multidevice_proto
-endif
 endif
 
 # NFC/camera interaction workaround - DO NOT COPY TO NEW DEVICES
